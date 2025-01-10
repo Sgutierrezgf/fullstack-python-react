@@ -128,3 +128,64 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Archivos y directorios de Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+*.log
+
+# Entornos virtuales
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Archivos de configuración del editor
+*.swp
+.idea/
+.vscode/
+
+# Archivos de configuración de Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Bases de datos SQLite
+*.sqlite3
+
+# Archivos de migración de base de datos
+*/migrations/*
+!*/migrations/__init__.py
+
+# Archivos de cache de Django
+staticfiles/
+
+# Archivos de configuración de pruebas y demás entornos temporales
+*.coverage
+*.tox/
+*.nox/
+*.coverage.*
+*.hypothesis/
+.coverage/
+nosetests.xml
+*.log
+
+# Archivos de configuración de Docker (si usas Docker)
+docker-compose.yml
+Dockerfile
+
+# Configuración de pytest
+.pytest_cache/
+
+# Archivos de configuración locales
+*.env
+*.env.*
+.local
