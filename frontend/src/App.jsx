@@ -3,10 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "../context/AuthContext";
 import { ProtectedRoute } from "../Routes";
 
+
 const LoginPage = lazy(() => import("../pages/Login"));
 const UsersPage = lazy(() => import("../pages/Users"));
 const RegisterPage = lazy(() => import("../pages/Register"));
 const HomePage = lazy(() => import("../pages/Home"));
+
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
 
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+
 
             {/* Rutas protegidas */}
             <Route element={<ProtectedRoute role="admin" />}>

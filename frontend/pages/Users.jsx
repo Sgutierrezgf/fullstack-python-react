@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 import UserEditModal from "../components/UserEditModal"; // Asegúrate de importar el modal
@@ -19,8 +20,8 @@ const UsersPage = () => {
     }
 
     const handleEdit = (u) => {
-        setSelectedUser(u);
-        setShowModal(true);
+        setSelectedUser(u);  // Guarda el usuario que se va a editar
+        setShowModal(true);  // Abre el modal
     };
 
     const handleSave = (updatedData) => {

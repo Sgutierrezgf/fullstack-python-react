@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
@@ -9,16 +8,12 @@ function RegisterPage() {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const { signup, isAuthenticated } = useAuth();
+    const { signup } = useAuth();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (isAuthenticated) navigate("/login");
-    }, [isAuthenticated, navigate]);
-
     const onSubmit = handleSubmit(async (values) => {
-        console.log(values);
         await signup(values);
+        navigate("/login");  // Redirigir al login después de registrarse
     });
 
     return (

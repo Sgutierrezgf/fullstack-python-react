@@ -18,7 +18,7 @@ function LoginPage() {
     }, [isAuthenticated, navigate]);
 
     const onSubmit = handleSubmit((data) => {
-        signin(data);
+        signin(data, navigate); // Pasamos 'navigate' para redirigir después de iniciar sesión
     });
 
     return (

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './modal.css'
 
 const UserEditModal = ({ showModal, user, onClose, onSave }) => {

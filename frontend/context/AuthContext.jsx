@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
     registerRequest,
     loginRequest,
@@ -7,6 +8,7 @@ import {
     editUser as updateUser,
 } from "../api/auth";
 import axios from "axios";
+
 
 
 
@@ -22,24 +24,48 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+    const [isAuthenticated, setIsAuthenticated] = useState(() => {
+        const token = localStorage.getItem("access_token");
+        return token ? true : false;
+    });
     const [users, setUsers] = useState([]);
     const [errors, setErrors] = useState([]);
 
+    // Sincronizar el usuario y el estado de autenticación en el localStorage
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem("user", JSON.stringify(user));
+        } else {
+            localStorage.removeItem("user");
+        }
+    }, [user]);
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            const token = localStorage.getItem("access_token");
+            if (!token) {
+                setIsAuthenticated(false);
+                setUser(null);
+            }
+        } else {
+            localStorage.removeItem("access_token");
+        }
+    }, [isAuthenticated]);
 
     const signup = async (user) => {
         try {
             const res = await registerRequest(user);
-            setUser(res.data.user); // Asumiendo que el token está en res.data.user
-            setIsAuthenticated(true);
-            console.log(user);
-
+            console.log("Usuario creado:", res.data);
+            // Redirigir al login después de registrarse exitosamente
         } catch (error) {
             setErrors(error.response.data);
         }
     };
+
 
 
     const signin = async (credentials) => {
