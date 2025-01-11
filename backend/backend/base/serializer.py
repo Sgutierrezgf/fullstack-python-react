@@ -1,22 +1,10 @@
-# from rest_framework import serializers
-# from .models import User
-
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'nombre', 'apellido', 'correo', 'telefono', 'genero', 'rol', 'estado']
-
-# class AuthSerializer(serializers.Serializer):
-#     username = serializers.CharField()
-#     password = serializers.CharField()
-
 from rest_framework import serializers
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'phone', 'gender', 'role', 'is_active', 'password']
+        fields = ['id', 'first_name', 'last_name', 'email', 'phone', 'gender', 'role', 'is_active', 'password']
         extra_kwargs = {
             'password': {'write_only': True}  # Asegura que la contraseña no se lea al serializar
         }

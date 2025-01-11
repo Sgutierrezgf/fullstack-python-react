@@ -1,54 +1,6 @@
-# from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-# from django.db import models
+from django.db import models
 
-# class UserManager(BaseUserManager):
-#     def create_user(self, username, password, **extra_fields):
-#         if not username:
-#             raise ValueError("El usuario debe tener un nombre de usuario")
-#         user = self.model(username=username, **extra_fields)
-#         user.set_password(password)
-#         user.save(using=self._db)
-#         return user
-
-#     def create_superuser(self, username, password, **extra_fields):
-#         extra_fields.setdefault('rol', 'admin')
-#         return self.create_user(username, password, **extra_fields)
-
-# class User(AbstractBaseUser):
-#     GENDER_CHOICES = [
-#         ('M', 'Masculino'),
-#         ('F', 'Femenino'),
-#         ('O', 'Otro'),
-#     ]
-
-#     STATUS_CHOICES = [
-#         ('activo', 'Activo'),
-#         ('inactivo', 'Inactivo'),
-#     ]
-    
-#     ROLE_CHOICES = [
-#         ('admin', 'Administrador'),
-#         ('user', 'Usuario'),
-#     ]
-
-#     username = models.CharField(max_length=255, unique=True)
-#     nombre = models.CharField(max_length=100)
-#     apellido = models.CharField(max_length=100)
-#     correo = models.EmailField(unique=True)
-#     telefono = models.CharField(max_length=20)
-#     genero = models.CharField(max_length=1, choices=GENDER_CHOICES)
-#     rol = models.CharField(max_length=10, choices=ROLE_CHOICES)
-#     estado = models.CharField(max_length=10, choices=STATUS_CHOICES, default='activo')
-#     password = models.CharField(max_length=255)
-
-#     objects = UserManager()
-
-#     USERNAME_FIELD = 'username'
-#     REQUIRED_FIELDS = ['nombre', 'apellido', 'correo']
-
-#     def __str__(self):
-#         return self.username
-
+# Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
@@ -90,7 +42,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone', 'gender', 'role']
+    REQUIRED_FIELDS = ['id', 'first_name', 'last_name', 'phone', 'gender', 'role']
 
     def __str__(self):
         return self.email
